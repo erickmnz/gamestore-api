@@ -10,23 +10,25 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
 @Entity
-@Table(name="tb_game")
-public class Game implements Serializable{
+@Table(name = "tb_game")
+public class Game implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	private String title;
 	private String description;
 	private String producer;
 	@ManyToOne
-	@JoinColumn(name="category_id")
+	@JoinColumn(name = "category_id")
 	private Category category;
-	
-	public Game() {}
 
-	public Game(int id, String title, String description, String producer, Category category) {
+	public Game() {
+	}
+
+	public Game(Integer id, String title, String description, String producer, Category category) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -35,11 +37,11 @@ public class Game implements Serializable{
 		this.category = category;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -66,7 +68,7 @@ public class Game implements Serializable{
 	public void setProducer(String producer) {
 		this.producer = producer;
 	}
-	
+
 	public Category getCategory() {
 		return category;
 	}
@@ -91,6 +93,5 @@ public class Game implements Serializable{
 		Game other = (Game) obj;
 		return id == other.id;
 	}
-	
-	
+
 }
