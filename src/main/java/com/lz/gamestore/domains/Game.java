@@ -3,6 +3,8 @@ package com.lz.gamestore.domains;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +25,7 @@ public class Game implements Serializable {
 	private String producer;
 	@ManyToOne
 	@JoinColumn(name = "category_id")
+	@JsonIgnore
 	private Category category;
 
 	public Game() {
