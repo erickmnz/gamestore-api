@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -38,6 +39,11 @@ public class CategoryResource {
 		Category cat = categoryS.findById(id);
 		return ResponseEntity.ok().body(cat); 
 	
+	}
+	@GetMapping(value="/n{name}")
+	public ResponseEntity<Category> findGamesByCategory(@RequestParam String name){
+		Category c = categoryS.findGamesByCategory(name);
+		return ResponseEntity.ok().body(c);
 	}
 	
 	@PostMapping

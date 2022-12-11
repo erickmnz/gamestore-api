@@ -58,6 +58,12 @@ public class CategoryService {
 	
 	}
 
+	public Category findGamesByCategory(String name) {
+		String a = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+		Category c = cRepository.findGamesByCategory(a);
+		return c;
+	}
+
 	
 	
 	
