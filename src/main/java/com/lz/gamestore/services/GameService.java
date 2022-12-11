@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lz.gamestore.domains.Category;
 import com.lz.gamestore.domains.Game;
-import com.lz.gamestore.dtos.GameDTO;
 import com.lz.gamestore.repositories.GameRepository;
 
 @Service
@@ -28,8 +28,9 @@ public class GameService {
 		return gRepository.findAll();
 	}
 
-	public Game create(Game game) {
+	public Game create(Integer cat_id, Game game) {
 		game.setId(null);
+		game.setCategory(catService.findById(cat_id));
 		return gRepository.save(game);
 	}
 
@@ -49,9 +50,24 @@ public class GameService {
 
 
 
-	public Game updateTitle(Integer id, GameDTO game) {
-		Game g = findById(id);
-		return gRepository.save(g);
+	public Game updateAll(Integer id, Game upGame) {
+		Game game = findById(id);
+		updateData(game, upGame);
+		return gRepository.save(game);
 	}
+	
+	
+	public void updateData(Game game, Game upGame) {
+		game.setTitle(upGame.getTitle());
+		game.setDescription(upGame.getDescription());
+		game.setProducer(upGame.getProducer());
+	}
+
+	public Game update(Integer id, Game upGame) {
+		Game game = findById(id);
+		updateData(game, upGame);
+		return gRepository.save(game);
+	}
+	
 
 }

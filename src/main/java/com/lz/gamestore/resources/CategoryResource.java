@@ -20,6 +20,8 @@ import com.lz.gamestore.domains.Category;
 import com.lz.gamestore.dtos.CategoryDTO;
 import com.lz.gamestore.services.CategoryService;
 
+import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping(value = "/categories")
@@ -47,14 +49,14 @@ public class CategoryResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Category> createCategory(Category category){
+	public ResponseEntity<Category> createCategory(@Valid Category category){
 		category = categoryS.createCategory(category);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(category.getId()).toUri();
 		return ResponseEntity.created(uri).body(category);
 	}
 	
 	@PutMapping(value="/{id}")
-	public ResponseEntity<CategoryDTO> updateCategory(@PathVariable Integer id, @RequestBody CategoryDTO catDTO){
+	public ResponseEntity<CategoryDTO> updateCategory(@PathVariable Integer id, @Valid @RequestBody CategoryDTO catDTO){
 		Category cat = categoryS.update(id, catDTO);
 		return ResponseEntity.ok().body(new CategoryDTO(cat));
 	}

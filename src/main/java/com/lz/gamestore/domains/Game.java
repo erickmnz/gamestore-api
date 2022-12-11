@@ -3,6 +3,8 @@ package com.lz.gamestore.domains;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.hibernate.validator.constraints.Length;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -12,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "tb_game")
@@ -20,8 +23,14 @@ public class Game implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@NotEmpty(message="Empty title field")
+	@Length(min=3,max=50, message="Title must be between 3 and 50 characters")
 	private String title;
+	@NotEmpty(message="Empty description field")
+	@Length(min=4,max=2000, message="Description must be between 10 and 2000 characters")
 	private String description;
+	@NotEmpty(message="Empty producer field")
+	@Length(min=3,max=100, message="Producer name must be between 3 and 50 characters")
 	private String producer;
 	@ManyToOne
 	@JoinColumn(name = "category_id")

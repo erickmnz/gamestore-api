@@ -21,9 +21,9 @@ public class DBService {
 		Category c1 = new Category(null, "Horror");
 		Category c2 = new Category(null, "Fantasy");
 		
-		Game g1 = new Game(null, "Resident Evil","lore","capcom", c1);
-		Game g2 = new Game(null, "Dead space", "lore","EA",c1);
-		Game g3 = new Game(null, "Lord of the Rings War in the North", "lore", "EA",c2);
+		Game g1 = new Game(null, "Resident Evil","lore","Capcom", c1);
+		Game g2 = new Game(null, "Dead space", "lore","EA Games",c1);
+		Game g3 = new Game(null, "Lord of the Rings War in the North", "lore", "EA Games",c2);
 
 		
 		c1.getGames().addAll(Arrays.asList(g1,g2));
