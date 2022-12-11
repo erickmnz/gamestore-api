@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lz.gamestore.domains.Category;
 import com.lz.gamestore.domains.Game;
 import com.lz.gamestore.repositories.GameRepository;
 
@@ -32,6 +31,7 @@ public class GameService {
 		game.setId(null);
 		return gRepository.save(game);
 	}
+	
 	
 
 

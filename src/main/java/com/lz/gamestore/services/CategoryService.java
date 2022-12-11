@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.lz.gamestore.domains.Category;
 import com.lz.gamestore.dtos.CategoryDTO;
 import com.lz.gamestore.repositories.CategoryRepository;
+import com.lz.gamestore.services.exceptions.DataIntegrityException;
 import com.lz.gamestore.services.exceptions.ObjNotFoundException;
 
 @Service
@@ -46,7 +48,14 @@ public class CategoryService {
 
 	public void delete(Integer id) {
 		Category cat = findById(id);
-		cRepository.delete(cat);
+		try {
+			cRepository.deleteById(id);
+
+		}catch(DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Category can not be delete: "
+					+ "Has one or more associations to it");
+		}
+	
 	}
 
 	
