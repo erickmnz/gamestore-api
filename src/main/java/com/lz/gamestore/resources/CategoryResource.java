@@ -5,9 +5,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -44,8 +47,16 @@ public class CategoryResource {
 		return ResponseEntity.created(uri).body(category);
 	}
 	
-	
-
+	@PutMapping(value="/{id}")
+	public ResponseEntity<CategoryDTO> updateCategory(@PathVariable Integer id, @RequestBody CategoryDTO catDTO){
+		Category cat = categoryS.update(id, catDTO);
+		return ResponseEntity.ok().body(new CategoryDTO(cat));
+	}
+	@DeleteMapping(value="/{id}")
+	public ResponseEntity<Void> deleteCategory(@PathVariable Integer id) {
+		categoryS.delete(id);
+		return ResponseEntity.noContent().build();
+	}
 
 	
 

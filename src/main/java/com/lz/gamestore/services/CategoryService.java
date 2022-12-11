@@ -37,6 +37,18 @@ public class CategoryService {
 		
 	}
 
+	public Category update(Integer id, CategoryDTO catDTO) {
+		Category cat = findById(id);
+		cat.setName(catDTO.getName());
+		
+		return cRepository.save(cat);
+	}
+
+	public void delete(Integer id) {
+		Category cat = findById(id);
+		cRepository.delete(cat);
+	}
+
 	
 	
 	
