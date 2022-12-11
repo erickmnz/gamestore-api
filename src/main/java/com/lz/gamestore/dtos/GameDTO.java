@@ -10,6 +10,7 @@ public class GameDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String title;
+	private String description;
 
 	public GameDTO() {
 	}
@@ -18,6 +19,7 @@ public class GameDTO implements Serializable {
 		super();
 		this.id = game.getId();
 		this.title = game.getTitle();
+		this.description = game.getDescription();
 
 	}
 
@@ -36,5 +38,14 @@ public class GameDTO implements Serializable {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 
 }

@@ -11,8 +11,8 @@ import jakarta.validation.constraints.NotEmpty;
 public class CategoryDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	@NotEmpty(message="Empty name field")
-	@Length(min=3,max=100, message="Name field must be between 3 and 100 characters")
+	@NotEmpty
+	@Length(min=3,max=10)
 	private String name;
 	
 	public CategoryDTO() {

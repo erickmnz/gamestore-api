@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -24,6 +25,7 @@ import com.lz.gamestore.services.GameService;
 
 import jakarta.validation.Valid;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/games")
 public class GameResource {
@@ -52,14 +54,14 @@ public class GameResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<Game> create(@RequestParam(value="category") Integer cat_id,@Valid Game game) {
+	public ResponseEntity<Game> create(@RequestParam(value="category") Integer cat_id, @Valid @RequestBody Game game) {
 		game = gService.create(cat_id,game);
-		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/livros/{id}").buildAndExpand(game.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/games/{id}").buildAndExpand(game.getId()).toUri();
 		return ResponseEntity.created(uri).body(game);
 	}
 	
 	@PutMapping(value="/{id}")
-	public ResponseEntity<Game> updateAll(@PathVariable Integer id, @Valid @RequestBody  Game game){
+	public ResponseEntity<Game> updateAll(@PathVariable Integer id,@Valid @RequestBody  Game game){
 		Game g = gService.updateAll(id, game);
 		return ResponseEntity.ok().body(g);
 	}

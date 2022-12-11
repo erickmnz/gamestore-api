@@ -22,8 +22,8 @@ public class Category implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@NotEmpty(message="Empty name field")
-	@Length(min=3,max=100, message="Name field must be between 3 and 50 characters")
+	@NotEmpty
+	@Length(min=3,max=50)
 	private String name;
 	@OneToMany(mappedBy="category")
 	

@@ -23,14 +23,14 @@ public class Game implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@NotEmpty(message="Empty title field")
-	@Length(min=3,max=50, message="Title must be between 3 and 50 characters")
+	@NotEmpty
+	@Length(min=3,max=50)
 	private String title;
-	@NotEmpty(message="Empty description field")
-	@Length(min=4,max=2000, message="Description must be between 10 and 2000 characters")
+	@NotEmpty
+	@Length(min=3,max=2000)
 	private String description;
-	@NotEmpty(message="Empty producer field")
-	@Length(min=3,max=100, message="Producer name must be between 3 and 50 characters")
+	@NotEmpty
+	@Length(min=1,max=50)
 	private String producer;
 	@ManyToOne
 	@JoinColumn(name = "category_id")
